@@ -1,57 +1,161 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang='en'>
 <head>
-    <title>Contact Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 400px;
-            margin: 50px auto;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #0078D4;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #005A9E;
-        }
-    </style>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Dion Updates – Task Dashboard</title>
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
+<script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+<style>
+:root{--bg:#0b1220;--card:#111a2e;--muted:#9fb0d0;--text:#e8eefc;--accent:#5cc8ff;--warn:#ffb020;--bad:#ff5c7a;--good:#39d98a;--line:#233154;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; background:linear-gradient(180deg,#070b14 0%,#0b1220 60%,#0b1220 100%); color:var(--text);}
+.header{padding:24px 28px; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(11,18,32,.85); backdrop-filter: blur(10px); z-index:10;}
+.header h1{margin:0;font-size:20px; font-weight:800; letter-spacing:.2px;}
+.header p{margin:6px 0 0;color:var(--muted); font-size:13px;}
+.container{padding:22px 28px; max-width:1300px; margin:0 auto;}
+.grid{display:grid; gap:14px;}
+.kpis{grid-template-columns: repeat(4, minmax(180px,1fr));}
+@media(max-width:900px){.kpis{grid-template-columns: repeat(2, 1fr);}}
+.card{background:rgba(17,26,46,.9); border:1px solid var(--line); border-radius:14px; padding:14px 16px; box-shadow: 0 10px 25px rgba(0,0,0,.25);}
+.kpi .label{color:var(--muted); font-size:12px;}
+.kpi .value{font-size:28px; font-weight:800; margin-top:6px;}
+.badge{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid var(--line); color:var(--muted);}
+.badge .dot{width:8px;height:8px;border-radius:50%; background:var(--accent);}
+.badge.overdue .dot{background:var(--bad);}
+.badge.duesoon .dot{background:var(--warn);}
+.badge.ontrack .dot{background:var(--good);}
+.section{margin-top:14px;}
+.section-title{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin:2px 0 10px;}
+.section-title h2{margin:0; font-size:14px; letter-spacing:.2px; color:#dbe6ff;}
+.section-title .hint{color:var(--muted); font-size:12px;}
+.charts{grid-template-columns: 1.2fr .8fr;}
+@media(max-width:900px){.charts{grid-template-columns: 1fr;}}
+.table-wrap{overflow:auto; border-radius:14px; border:1px solid var(--line);}
+table{width:100%; border-collapse:collapse; min-width:980px; background:rgba(17,26,46,.75);}
+th,td{padding:10px 12px; border-bottom:1px solid var(--line); font-size:12.5px; vertical-align:top;}
+th{position:sticky; top:0; background:rgba(17,26,46,.95); text-align:left; font-size:12px; color:var(--muted);}
+tr:hover td{background:rgba(92,200,255,.05);}
+.small{color:var(--muted); font-size:12px;}
+.search{display:flex; gap:10px; align-items:center;}
+input[type='search']{width:320px; max-width:55vw; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:#0c1426; color:var(--text); outline:none;}
+select{padding:10px 12px;border-radius:12px;border:1px solid var(--line); background:#0c1426; color:var(--text); outline:none;}
+.footer{padding:18px 28px; color:var(--muted); font-size:12px; border-top:1px solid var(--line);}
+</style>
 </head>
 <body>
+  <div class='header'>
+    <h1>Dion Updates – Task Dashboard</h1>
+    <p>Auto-generated from Microsoft List export • Last refreshed: 2026-02-23 08:38</p>
+  </div>
+  <div class='container'>
 
-    <h2>Customer Details Form</h2>
+    <div class='grid kpis'>
+      <div class='card kpi'><div class='label'>Total tasks (visible)</div><div class='value'>1</div><div class='small'>Excludes items marked Hidden</div></div>
+      <div class='card kpi'><div class='label'>Overdue</div><div class='value' style='color:var(--bad)'>0</div><div class='small'>Due date passed</div></div>
+      <div class='card kpi'><div class='label'>Due in next 7 days</div><div class='value' style='color:var(--warn)'>1</div><div class='small'>Requires attention</div></div>
+      <div class='card kpi'><div class='label'>High priority</div><div class='value' style='color:var(--accent)'>1</div><div class='small'>Priority = High</div></div>
+    </div>
 
-    <form>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+    <div class='section'>
+      <div class='section-title'>
+        <h2>Overview</h2>
+        <div class='hint'>By due window, priority and owner</div>
+      </div>
+      <div class='grid charts'>
+        <div class='card'>
+          <canvas id='dueBucketChart' height='120'></canvas>
+        </div>
+        <div class='card'>
+          <canvas id='priorityChart' height='120'></canvas>
+        </div>
+        <div class='card' style='grid-column:1/-1'>
+          <canvas id='ownerChart' height='90'></canvas>
+        </div>
+      </div>
+    </div>
 
-        <label for="surname">Surname</label>
-        <input type="text" id="surname" name="surname" required>
+    <div class='section'>
+      <div class='section-title'>
+        <h2>Task list</h2>
+        <div class='search'>
+          <input id='searchBox' type='search' placeholder='Search title, owner, notes…'>
+          <select id='statusFilter'>
+            <option value=''>All status</option>
+            <option value='Overdue'>Overdue</option>
+            <option value='Due soon'>Due soon</option>
+            <option value='On track'>On track</option>
+          </select>
+        </div>
+      </div>
+      <div class='table-wrap'>
+        <table id='taskTable'>
+          <thead>
+            <tr>
+              <th>Title</th><th>Priority</th><th>Priority Rating</th><th>Owner</th><th>Task Given</th><th>Date Given</th><th>Date Due</th><th>Other Context</th><th>Dion Comment</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Testing Dashboard </td><td>High</td><td>30</td><td>Gary</td><td>Need to create an Dashboard that will remain up to date </td><td>2026-02-17</td><td>2026-02-27</td><td>-</td><td>Nothing at this stage </td><td>Due soon</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class='small' style='margin-top:8px'>Tip: export your Microsoft List to CSV and overwrite this file, then re-run the generator to refresh the dashboard.</div>
+    </div>
 
-        <label for="cellnumber">Cell Number</label>
-        <input type="tel" id="cellnumber" name="cellnumber" placeholder="0821234567" required>
+  </div>
+  <div class='footer'>Built for Director view — simple KPIs + drill-down list. </div>
 
-        <button type="submit">Submit</button>
-    </form>
+<script>
+const dueLabels = ["Overdue", "Due today", "Due in 1-7d", "Due in 8-30d", "Due 31+d"];
+const dueData = [0, 0, 1, 0, 0];
+const priLabels = ["High"];
+const priData = [1];
+const ownerLabels = ["Gary"];
+const ownerData = [1];
 
+Chart.defaults.color = '#cfe0ff';
+Chart.defaults.borderColor = 'rgba(35,49,84,.6)';
+
+new Chart(document.getElementById('dueBucketChart'), {
+  type: 'bar',
+  data: { labels: dueLabels, datasets: [{ label: 'Tasks', data: dueData, backgroundColor: ['#ff5c7a','#ffb020','#5cc8ff','#39d98a','#7c8dbb'] }] },
+  options: { plugins: { legend: { display:false }, title: { display:true, text:'Tasks by due window' } }, scales: { y: { beginAtZero:true, ticks: { precision:0 } } } }
+});
+
+new Chart(document.getElementById('priorityChart'), {
+  type: 'doughnut',
+  data: { labels: priLabels, datasets: [{ data: priData, backgroundColor: ['#5cc8ff','#ffb020','#ff5c7a','#39d98a','#7c8dbb'] }] },
+  options: { plugins: { title: { display:true, text:'Tasks by priority' } }, cutout:'60%' }
+});
+
+new Chart(document.getElementById('ownerChart'), {
+  type: 'bar',
+  data: { labels: ownerLabels, datasets: [{ label:'Tasks', data: ownerData, backgroundColor:'#5cc8ff' }] },
+  options: { indexAxis:'y', plugins: { legend: { display:false }, title: { display:true, text:'Tasks by owner' } }, scales: { x: { beginAtZero:true, ticks: { precision:0 } } } }
+});
+
+// Table search & filter
+const searchBox = document.getElementById('searchBox');
+const statusFilter = document.getElementById('statusFilter');
+const table = document.getElementById('taskTable');
+
+function applyFilters() {
+  const q = searchBox.value.toLowerCase();
+  const status = statusFilter.value;
+  const rows = table.tBodies[0].rows;
+  for (const r of rows) {
+    const text = r.innerText.toLowerCase();
+    const rowStatus = r.cells[r.cells.length-1].innerText;
+    const okText = !q || text.includes(q);
+    const okStatus = !status || rowStatus === status;
+    r.style.display = (okText && okStatus) ? '' : 'none';
+  }
+}
+searchBox.addEventListener('input', applyFilters);
+statusFilter.addEventListener('change', applyFilters);
+</script>
 </body>
 </html>
