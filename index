@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005A9E;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Customer Details Form</h2>
+
+    <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="cellnumber">Cell Number</label>
+        <input type="tel" id="cellnumber" name="cellnumber" placeholder="0821234567" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
